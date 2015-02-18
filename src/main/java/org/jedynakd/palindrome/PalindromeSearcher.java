@@ -8,7 +8,7 @@ public class PalindromeSearcher {
     public static void main(String args[]) {
         int digit;
         int number;
-        List<String> palindromes = new ArrayList<>();
+        List<Integer> palindromes = new ArrayList<>();
         Scanner in = new Scanner(System.in);
 
         digit = in.nextInt();
@@ -27,24 +27,22 @@ public class PalindromeSearcher {
         }
 
         String strNumber;
-        while (maxPossiblePalindrome != 11) {
+        int lowestDivisor = (maxNumber+1)/10;
+        System.out.println(lowestDivisor);
+        while (maxPossiblePalindrome != lowestDivisor) {
             strNumber = Integer.toString(maxPossiblePalindrome);
-            if (strNumber.substring(0, strNumber.length() / 2).equals(new StringBuffer(strNumber.substring((strNumber.length() / 2), strNumber.length())).reverse().toString())) {
-                palindromes.add(strNumber);
-            }
-            if (strNumber.substring(0, (strNumber.length() / 2) + 1).equals(new StringBuffer(strNumber.substring(((strNumber.length() / 2)), strNumber.length())).reverse().toString())) {
-                palindromes.add(strNumber);
+            if (strNumber.equals(new StringBuffer(strNumber).reverse().toString())) {
+                palindromes.add(Integer.parseInt(strNumber));
             }
             maxPossiblePalindrome--;
         }
         int checker = 0;
         maxNumber = Integer.parseInt(strMaxNumber);
 
-        while (maxNumber != 1) {
-            for (String palindrome : palindromes) {
-                int intPalindrome = Integer.parseInt(palindrome);
+        while (maxNumber != lowestDivisor) {
+            for (Integer intPalindrome : palindromes) {
                 if (intPalindrome % maxNumber == 0 && checker == 0) {
-                    System.out.println(palindrome);
+                    System.out.println(intPalindrome);
                     checker++;
                 }
             }
