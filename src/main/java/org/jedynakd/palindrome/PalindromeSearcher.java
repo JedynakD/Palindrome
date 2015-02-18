@@ -14,19 +14,19 @@ public class PalindromeSearcher {
 
     public int findBiggestPalindromeMadeFromMultiplicationOfNumbers() {
         int checker = 0;
-        int palindrome = 0;
+        int biggestPalindrome = 0;
         int maxNumber = biggestPalindromeCreator.createBiggestNumber();
         findAllPalindromes();
         while (maxNumber != createLowestDivisor()) {
-            for (Integer intPalindrome : palindromes) {
-                if (intPalindrome % maxNumber == 0 && checker == 0) {
+            for (Integer palindrome : palindromes) {
+                if (palindrome % maxNumber == 0 && checker == 0) {
                     checker++;
-                    palindrome = intPalindrome;
+                    biggestPalindrome = palindrome;
                 }
             }
             maxNumber--;
         }
-        return palindrome;
+        return biggestPalindrome;
     }
 
     private void findAllPalindromes() {
