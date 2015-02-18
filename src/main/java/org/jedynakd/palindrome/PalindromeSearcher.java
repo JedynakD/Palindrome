@@ -5,7 +5,6 @@ import java.util.List;
 
 
 public class PalindromeSearcher {
-    private List<Integer> palindromes = new ArrayList<>();
     private BiggestPalindromeCreator biggestPalindromeCreator;
 
     PalindromeSearcher(BiggestPalindromeCreator biggestPalindromeCreator) {
@@ -15,8 +14,8 @@ public class PalindromeSearcher {
     public int findBiggestPalindromeMadeFromMultiplicationOfNumbers() {
         int checker = 0;
         int biggestPalindrome = 0;
+        List<Integer> palindromes = findAllPalindromes();
         int maxNumber = biggestPalindromeCreator.createBiggestNumber();
-        findAllPalindromes();
         while (maxNumber != createLowestDivisor()) {
             for (Integer palindrome : palindromes) {
                 if (palindrome % maxNumber == 0 && checker == 0) {
@@ -29,8 +28,9 @@ public class PalindromeSearcher {
         return biggestPalindrome;
     }
 
-    private void findAllPalindromes() {
+    private List<Integer> findAllPalindromes() {
         String strNumber;
+        List<Integer> palindromes = new ArrayList<>();
         int biggestPossiblePalindrome = biggestPalindromeCreator.createBiggestPossiblePalindrome();
         while (biggestPossiblePalindrome != createLowestDivisor()) {
             strNumber = Integer.toString(biggestPossiblePalindrome);
@@ -39,6 +39,7 @@ public class PalindromeSearcher {
             }
             biggestPossiblePalindrome--;
         }
+        return palindromes;
     }
 
     private int createLowestDivisor() {
